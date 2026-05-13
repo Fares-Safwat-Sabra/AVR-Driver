@@ -10,8 +10,7 @@
 #define SSD_CONFIG_H_
 
 
-#define  SSD_PORT        DIO_PORTC
-
+#define  SSD_PORT        DIO_PORTA
 
 
 

@@ -9,29 +9,14 @@
 
 int main(void)
 {
-	  
-
-	 
- 	   LCD_voidInit() ; 
-	    KPD_voidInit() ; 	
-	     
-		 u8 key=0xff ; 
+	  	u8 i=0 ;
 	
     while (1) 
     {
-		
-       do 
-       {
-		   key = KPD_u8GetKey() ; 
-		   
-       } while (key==0xff);
-		
-
-        LCD_voidSendNumber(key)  ; 
-		
-		
-		
-
+		SSD_voidDispalyNum(i);
+        i++ ;
+        if (i == 10) i=0;
+        _delay_ms(1000) ;
     }
 }
 
