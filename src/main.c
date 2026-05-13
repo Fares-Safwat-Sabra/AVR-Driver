@@ -16,7 +16,7 @@ int main(void)
 		SSD_voidDispalyNum(i);
         i++ ;
         if (i == 10) i=0;
-        _delay_ms(1000) ;
+        _delay_ms(5000) ;
     }
 }
 
