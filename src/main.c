@@ -9,14 +9,9 @@
 
 int main(void)
 {
-	  	u8 i=0 ;
-	
     while (1) 
     {
-		SSD_voidDispalyNum(i);
-        i++ ;
-        if (i == 10) i=0;
-        _delay_ms(5000) ;
+
     }
 }
 

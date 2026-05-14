@@ -9,7 +9,6 @@
 #include "DIO_interface.h"
 #include "LCD_interface.h"
 #include "LCD_config.h"
-#define F_CPU 16000000UL 
 #include<util/delay.h>
 
 
@@ -55,7 +54,6 @@ void LCD_voidInit(void) {
 		 
 		  LCD_voidSHData(0b0010) ; 
 		  LCD_voidSendEnablePulse() ; 
-		  
 		  LCD_voidSHData(0b0010) ;
 		  LCD_voidSendEnablePulse() ;
 		  LCD_voidSHData(0b1000) ;
@@ -63,7 +61,7 @@ void LCD_voidInit(void) {
 		  
 		#endif 	
 	  /*dispaly on /off control */ 
-	  LCD_voidSendCommand(0x0C) ; 
+	LCD_voidSendCommand(0x0C) ; 
 	    
 	 /* clr lcd */
 	 LCD_voidSendCommand(1) ; 
@@ -122,8 +120,6 @@ void LCD_voidSendData(u8 copy_u8data) {
 	
 	
 }
-
-
 
 void LCD_voidSendString(s8 * str) {
 	
