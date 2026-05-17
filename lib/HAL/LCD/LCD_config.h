@@ -18,8 +18,8 @@
 
 #define  LCD_CPORT    DIO_PORTB 
 
-#define LCD_RS_PIN    DIO_PIN0 
-#define LCD_RW_PIN    DIO_PIN1
+#define LCD_RW_PIN    DIO_PIN0 
+#define LCD_RS_PIN    DIO_PIN1
 #define LCD_EN_PIN    DIO_PIN2 
 
 

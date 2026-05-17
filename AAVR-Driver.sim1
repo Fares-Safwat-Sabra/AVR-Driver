@@ -1,0 +1,15 @@
+<circuit version="1.1.0-SR2" rev="260312" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="MCU" CircId="mega32-1" mainComp="false" Show_id="true" Show_Val="false" Pos="-36,-48" rotation="0" hflip="1" vflip="1" label="mega32-1" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="16 MHz" Program=".pio/build/ATmega32/firmware.hex" Auto_Load="false" saveEepr="true" Logic_Symbol="false" Wdt_enabled="false" MainMcu="true" SerialMon="-1" />
+
+<item itemtype="Fixed Voltage" CircId="Fixed Voltage-11" mainComp="false" Show_id="false" Show_Val="false" Pos="-108,24" rotation="0" hflip="1" vflip="1" label="Fixed Voltage-11" idLabPos="-64,-24" labelrot="0" valLabPos="-16,8" valLabRot="0" Voltage="5 V" Out="true" />
+
+<item itemtype="Node" CircId="Node-13" mainComp="false" Pos="-68,24" />
+
+<item itemtype="Connector" uid="Connector-44" startpinid="mega32-1-RST" endpinid="Node-13-0" pointList="-44,24,-68,24" />
+
+<item itemtype="Connector" uid="Connector-45" startpinid="Node-13-2" endpinid="Fixed Voltage-11-outnod" pointList="-68,24,-92,24" />
+
+<item itemtype="Connector" uid="Connector-43" startpinid="mega32-1-PORTV0" endpinid="Node-13-1" pointList="20,40,28,40,28,128,-68,128,-68,24" />
+
+</circuit>

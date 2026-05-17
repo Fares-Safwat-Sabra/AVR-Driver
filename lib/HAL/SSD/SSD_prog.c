@@ -8,6 +8,7 @@
 #include "STD_TYPE.h"
 #include "DIO_interface.h"
 #include "SSD_config.h"
+#include <util/delay.h>
 
 
 
@@ -22,4 +23,33 @@ void SSD_voidDispalyNum(u8 copy_u8num)
 		
 	  
 	
+}
+
+void Display_Multiplex(u8 current_count) {
+DIO_voidSetPinVal(DIO_PORTB, DIO_PIN1, HIGH);
+    DIO_voidSetPinVal(DIO_PORTB, DIO_PIN2, HIGH);
+
+    if (current_count <= 9) {
+        // تجهيز البيانات أولاً
+        SSD_voidDispalyNum(current_count);            
+        // تشغيل الآحاد فقط
+        DIO_voidSetPinVal(DIO_PORTB, DIO_PIN2, LOW);  
+        _delay_ms(5);
+    } else {
+        // --- عرض العشرات ---
+        SSD_voidDispalyNum(current_count / 10);       // تجهيز البيانات
+        DIO_voidSetPinVal(DIO_PORTB, DIO_PIN1, LOW);  // تفعيل العشرات
+        _delay_ms(5);
+        
+        // --- إظلام فاصل لمنع انتقال الشبح ---
+        DIO_voidSetPinVal(DIO_PORTB, DIO_PIN1, HIGH); 
+        
+        // --- عرض الآحاد ---
+        SSD_voidDispalyNum(current_count % 10);       // تجهيز البيانات
+        DIO_voidSetPinVal(DIO_PORTB, DIO_PIN2, LOW);  // تفعيل الآحاد
+        _delay_ms(5);
+        
+        // إطفاء الآحاد في النهاية لتسليم الحافلة نظيفة
+        DIO_voidSetPinVal(DIO_PORTB, DIO_PIN2, HIGH);
+    }
 }

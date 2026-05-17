@@ -11,6 +11,8 @@
 
 
 void SSD_voidDispalyNum(u8 copy_u8num) ; 
+void Display_Multiplex(u8 current_count) ;
+
 
 
 #endif /* SSD_INTERFACE_H_ */
