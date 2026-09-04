@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "AVR-Driver",
+			"path": "../../../Documents/PlatformIO/Projects/AVR-Driver"
+		}
+	],
+	"settings": {}
+}

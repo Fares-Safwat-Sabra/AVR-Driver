@@ -1,53 +1,37 @@
 /*
- * D101_DRIVERS.c
+ * Project 1: ADC Potentiometer Reader
+ * قراءة الجهد من البوتنشيوميتر وعرض القيمة الرقمية والجهد على LCD
  *
- * Created: 4/12/2026 8:54:38 PM
- * Author : fathi
+ * Created: 7/22/2026
+ *  Author: fathi
  */ 
 #include "main.h"
 
-
 int main(void)
 {
-  DIO_voidSetPortDir(DIO_PORTA, OUTPUT) ;
-  DIO_voidSetPortDir(DIO_PORTB, OUTPUT) ;
-  DIO_voidSetPortDir(DIO_PORTD, INPUT) ;
+	u16 ADC_Value = 0;
+	u16 ADC_Voltage_mV = 0;
 
-  u8 count = 0 ;
-  
-    while (1)
-    {
-      Display_Multiplex(count);
+	LCD_voidInit();
+	ADC_voidInit();
 
-        /* --- فحص الأزرار --- */
-        if(DIO_u8ReadPinVal(DIO_PORTD, DIO_PIN2) == LOW)
-        { 
-            if(count == 99) { count = 0; }
-            else { count++; }
-            
-            // قفل المعالج حتى رفع الإصبع + تحديث الشاشة لمنع الانطفاء
-            while(DIO_u8ReadPinVal(DIO_PORTD, DIO_PIN2) == LOW) {
-                Display_Multiplex(count);
-            }
-        }
+	while (1)
+	{
+		ADC_Value = ADC_u16ReadChannel(ADC_CHANNEL_0);
 
-        if(DIO_u8ReadPinVal(DIO_PORTD, DIO_PIN3) == LOW)
-        { 
-            if(count == 0) { count = 99; }
-            else { count--; }
-            
-            while(DIO_u8ReadPinVal(DIO_PORTD, DIO_PIN3) == LOW) {
-                Display_Multiplex(count);
-            }
-        }
+		ADC_Voltage_mV = (ADC_Value * 5000) / 1023;
 
-        if(DIO_u8ReadPinVal(DIO_PORTD, DIO_PIN7) == LOW)
-        { 
-            count = 0;
-            while(DIO_u8ReadPinVal(DIO_PORTD, DIO_PIN7) == LOW) {
-                Display_Multiplex(count);
-            }
-        }
-    }
+		LCD_voidGotoXY(0, 1);
+		LCD_voidSendString("Raw: ");
+		LCD_voidSendNumber(ADC_Value);
+		LCD_voidSendString("    ");
+
+		LCD_voidGotoXY(0, 0);
+		LCD_voidSendString("V: ");
+		LCD_voidSendNumber(ADC_Voltage_mV / 1000);
+		LCD_voidSendData('.');
+		LCD_voidSendNumber(ADC_Voltage_mV  / 100);
+
+		_delay_ms(200);
+	}
 }
-
